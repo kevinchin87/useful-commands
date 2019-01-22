@@ -1,0 +1,9 @@
+# Export BigQuery Table's schema
+bq show --schema --format=prettyjson [project:dataset.table]
+
+# Export Bigquery Job Error Descriptions
+bq --format=prettyjson show -j [job-name]
+
+# SSH to compute engine
+gcloud compute ssh [instance-name]
+
