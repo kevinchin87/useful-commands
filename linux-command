@@ -1,0 +1,6 @@
+# Run shell script in background
+nohup [script file] &
+
+# Continuous tail
+tail -f [file]
+
