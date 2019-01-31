@@ -4,8 +4,8 @@ nohup [script file] &
 # Continuous tail
 tail -f [file]
 
-# compress tar gzip file
+# Compress tar gzip file
 tar -zcvf [name].tar.gz [file]
 
-# extract tar gzip file
-tar -zcvf [name].tar.gz
+# Extract tar gzip file
+tar -zxvf [name].tar.gz
