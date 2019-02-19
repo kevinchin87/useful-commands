@@ -9,3 +9,6 @@ tar -zcvf [name].tar.gz [file]
 
 # Extract tar gzip file
 tar -zxvf [name].tar.gz
+
+# CPU utilization 
+top
