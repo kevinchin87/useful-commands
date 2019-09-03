@@ -7,7 +7,9 @@ bq --format=prettyjson show -j [job-name]
 # SSH to compute engine
 gcloud compute ssh [instance-name]
 
-# create credential.json to local folder
+# Create credential.json to local folder
 gcloud beta auth application-default login
 cp ~/.config/gcloud/application_default_credentials.json credentials.json
 
+# Bulk delete GCS files
+gsutil -m rm -r gs://[folder]
