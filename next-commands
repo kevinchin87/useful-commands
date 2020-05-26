@@ -1,3 +1,9 @@
 # create next app
 npx create-next-app
 
+# folder structure
+src
+ - pages
+ - containers
+ - libs
+ 
