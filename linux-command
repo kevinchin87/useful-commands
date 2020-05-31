@@ -1,3 +1,6 @@
+# SSH
+ssh -i "pem file" ubuntu@ip-address
+
 # Run shell script in background
 nohup [script file] &
 
