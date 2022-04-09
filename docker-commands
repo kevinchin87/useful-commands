@@ -1,1 +1,71 @@
+# Dockerfile for express
+FROM node:16.14.0-alpine //define docker's os image
+WORKDIR /app //define work directory in the docker
+COPY package.json . //npm package will be cache, and improve the docker compile time if no update on npm library
+RUN npm install
+COPY . ./ //copy the working directory to the docker
+EXPOSE 3004 //whitelist port
+CMD ["npm", "run", "start"] //start code
 
+# .dockerignore file
+node_modules
+Dockerfile
+.dockerignore
+.git
+.gitignore
+
+# Build docker image
+docker build -t [tag-name] [file-path]
+docker build -t node-app-image .
+# -t = Name and optionally a tag in the 'name:tag' format
+
+# Run docker image
+docker run -p [local-port]:[container-port] -d --name [container-name] [tag-name]
+docker run -p 3001:3000 -d --name node-app node-app-image
+# -d = detech mode, run container in background and print container ID
+# -p = define local and container port mapping
+# --name = container name
+
+# Run docker image with bind volume for development purpose
+# This is to use nodemon in container and update the source code will refresh the code in container
+docker run -v [local-file-path]:[container-file-path] -p [local-port]:[container-port] -d --name [container-name] [tag-name]
+docker run -v C:\Users\kevin\Documents\Programming\tro\tro_discord_msg\:/app -p 3001:3000 -d --name node-app node-app-image
+# use shortcut to point current directory
+-v %cd%:/app
+# %cd% = window shell 
+# ${pwd} = power shell
+# $(pwd) = linux/mac
+# /$(pwd) = gitbash
+
+# Bind anonymous volume to ensure deleting local node_module will not delete the node_module folder in container
+docker run -v /$(pwd):/app -v //app//node_modules -p 3001:3000 -d --name node-app node-app-image
+# use // for gitbash, / for the rest? test it
+
+## Ensure bind volume in container is read only, meaning new generated files in container will not sync to local machine
+-v /$(pwd):/app:ro
+# ro = read only
+
+
+# Access to docker container
+docker exec -it [container-name] sh|bash
+docker exec -it node-app sh
+# -i = Keep STDIN open even if not attached
+# -t = Allocate a pseudo-TTY
+
+# Delete docker container
+docker rm [container-name] -f
+docker rm node-app -f
+# -f = Force the removal of a running container (uses SIGKILL)
+
+# List docker image
+docker image ls
+
+# List running docker container
+docker ps
+
+# List all docker container
+docker ps -a
+
+# Get container logs
+docker logs [container-name]
+docker logs node-app
