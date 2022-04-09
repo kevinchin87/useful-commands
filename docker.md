@@ -11,7 +11,7 @@ COPY . ./ //copy the working directory to the docker
 EXPOSE 3004 //whitelist port
 CMD ["npm", "run", "start"] //start code
 ```
-## .dockerignore
+## .dockerignore for Express
 
 ```
 node_modules
